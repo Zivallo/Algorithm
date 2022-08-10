@@ -8,20 +8,20 @@ struct Node {
 };
 int idxMagic = 4;
 int N;
-int aDrY[5] = { -1,1,0,0,0 };
-int aDrX[5] = { 0,0,0,-1,1 };
-int eDrY[8] = { -1,1,0,0,-1,-1,1,1 };
-int eDrX[8] = { 0,0,-1,1,-1,1,-1,1 };
+int aDrY[5] = { 0,0,0,-1,1 };
+int aDrX[5] = { 0,-1,1,0,0 };
+int eDrY[8] = { 0,0,1,-1,1,-1,-1,1 };
+int eDrX[8] = { 1,-1,0,0,-1,-1,1,1 };
 string map[6];
 queue<Node> q;
 
-bool isAnna(int ey, int ex, int ay, int ax) {
+int isAnna(int ey, int ex, int ay, int ax) {
 	for (int y = ey - 2; y < ey + 3; y++) {
 		for (int x = ex - 2; x < ex + 3; x++) {
-			if (y == ay && x == ax) return true;
+			if (y == ay && x == ax) return 1;
 		}
 	}
-	return false;
+	return 0;
 };
 
 int main() {
