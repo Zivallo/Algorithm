@@ -3,33 +3,29 @@
 using namespace std;
 
 int N, M, target;
-int nodeSize, idx;
-int maxidx, minidx;
+int upSize, downSize;
+int used[100001], r_slist[100001];
 vector<vector<int>> alist(100001);
 vector<vector<int>> r_alist(100001);
 
-int getMinIdx(int now, int lev)
+void getDownSize(int now)
 {
-    if (alist[now].size() == 0)
-    {
-        return lev;
-    }
+    downSize++;
     for (int i = 0; i < alist[now].size(); i++)
     {
         int next = alist[now][i];
-        getMinIdx(next, lev + 1);
+        if (used[next] == 1) continue;
+        used[next] = 1;
+        getDownSize(next);
     }
 }
-int getMaxIdx(int now, int lev)
+void getUpSize(int now)
 {
-    if (r_alist[now].size() == 0)
-    {
-        return lev;
-    }
+    upSize++;
     for (int i = 0; i < r_alist[now].size(); i++)
     {
         int next = r_alist[now][i];
-        getMinIdx(next, lev + 1);
+        getUpSize(next);
     }
 }
 
@@ -41,10 +37,12 @@ int main()
         int from, to;
         cin >> from >> to;
         alist[from].push_back(to);
-        r_alist[to].push_back(to);
+        r_alist[to].push_back(from);
     }
-    cout << 1 + getMaxIdx(target, 0) << '\n';
-    cout << N - getMinIdx(target, 0) << '\n';
+    getUpSize(target);
+    getDownSize(target);
+    cout << upSize << '\n';
+    cout << N - downSize + 1 << '\n';
 
     return 0;
 }
