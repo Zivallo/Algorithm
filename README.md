@@ -1,6 +1,6 @@
-# Study C++ Algorithms
+# Study C/C++ Algorithms
 ### Rules
-> ##### 1. 모든 문제는 C++로 풀이
+> ##### 1. 모든 문제는 C/C++로 풀이
 > ##### 2. 코드 재활용 X
 > ##### 3. cpp 또는 c 파일로 업로드(보관용)
 > ##### 4. commit form : [Site Code]-Description-Date
